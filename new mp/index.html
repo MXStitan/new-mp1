@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<!-- <header>
+<div class="tophead">
+    <div class="brandlogo">
+        Zaid Music Player
+    </div>
+<div>
+    <span class="menulines" onclick="openNav()">
+        &#9776;
+    </span>
+</div>
+</div>
+</header>
+
+<div class="sidenav" id="mySidenav">
+<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+&times;</a>
+<a href="#"><i class="fa fa-home" aria-hidden="true"></i>Home </a>
+<a href="#"><i class="fa fa-home" aria-hidden="true"></i>Playlists </a>
+<a href="https://www.youtube.com/channel/UCmGuosHqctgFA7G5NfageQQ"><i class="fa fa-home" aria-hidden="true"></i>Youtube </a>
+</div>
+ -->
+
+
+     <!-- <div class="bodypic">
+    <img src="/IMAGES/titan2.jpg" alt="">
+</div> -->
+
+
+    <div class="main_div">
+        <div class="music_container">
+            <h2 id="title">doorie</h2>
+            <h3 id="artist">Zaid Shaikh</h3>
+            <div class="img_container">
+            <img src="/images/m1.jpg" alt="">
+            </div>
+            <audio src="/music/m1.mp3"></audio>
+        <!-- //controls -->
+        <div class="music_controls">
+            <i class="fas fa-backward" id="prev" title="Previous"></i>
+            <i class="fas fa-play main-button" id="play" title="Play"></i>
+            <i class="fas fa-forward" id="next" title="Next"></i>
+        </div>
+        </div>
+    </div>
+
+
+    <script>
+        const music=document.querySelector("audio");
+        const img= document.querySelector("img");
+        const play=document.getElementById("play");
+        const title=document.getElementById("title");
+        const artist=document.getElementById("artist");
+        const prev=document.getElementById("prev");
+        const next=document.getElementById("next");
+
+        const songs=[
+            
+        {
+            name:"m1",
+            title:"doorie",
+            artist:"Zaid Shaikh",
+        },
+        
+        {
+            name:"m2",
+            title:"NCS Song 2",
+            artist:"Anonymous",
+        },
+        {
+            name:"m3",
+            title:"NCS Song 3",
+            artist:"Zyan Malik",
+        }
+        ];
+
+
+
+
+//for play
+        let isPlaying=false;
+        const playMusic= () => {
+        isPlaying=true;
+        music.play();
+        play.classList.replace("fa-play", "fa-pause");
+        img.classList.add("anime");
+        };
+
+        //for pause
+       const pauseMusic= () => {
+        isPlaying=false;
+        music.pause();
+        play.classList.replace("fa-pause", "fa-play");
+        img.classList.remove("anime");
+};
+    play.addEventListener("click",()=> {
+    // if(isPlaying){
+    //     pauseMusic();
+    // }else{
+    //     playMusic();
+    // }
+    isPlaying ? pauseMusic() : playMusic();
+});
+    //next song
+
+    const loadSong= (songs) =>{
+    title.textContent=songs.title;
+    artist.textContent=songs.artist;
+    music.src= "/music/"+ songs.name + ".mp3";
+    img.src= "/images/"+ songs.name + ".jpg";
+};
+    
+
+    songIndex=0;
+    //loadSong(songs[1]);
+
+    const nextSong= () =>{
+        songIndex=(songIndex+1) % songs.length;
+        loadSong(songs[songIndex]);
+        playMusic();
+    };
+
+    const prevSong= () =>{
+        songIndex=(songIndex-1 + songs.length) % songs.length;
+        loadSong(songs[songIndex]);
+        playMusic();
+    };
+
+
+
+    next.addEventListener("click", nextSong);
+    prev.addEventListener("click", prevSong);
+
+//sidenav
+
+    </script>
+    <script>
+        const openNav= () =>{
+    document.getElementById('mySidenav').style.width="250px";
+}
+const closeNav= () =>{
+    document.getElementById('mySidenav').style.width="0px";
+}
+    </script>
+</body>
+</html>
